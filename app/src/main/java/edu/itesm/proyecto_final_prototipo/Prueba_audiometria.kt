@@ -1,10 +1,17 @@
 package edu.itesm.proyecto_final_prototipo
 
+import android.content.Context.AUDIO_SERVICE
+import android.media.AudioManager
+import android.media.MediaPlayer
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat.getSystemService
+import androidx.fragment.app.Fragment
+import kotlinx.android.synthetic.main.fragment_prueba_audiometria.*
+
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -20,6 +27,10 @@ class Prueba_audiometria : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
+    var bandera=0
+    var audiocontador=1
+    var reprstop=1
+    lateinit var mp:MediaPlayer
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,6 +46,122 @@ class Prueba_audiometria : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_prueba_audiometria, container, false)
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        mp = MediaPlayer.create(context, R.raw.senoidal_125hz)
+        bandera=audiocontador
+        button14.text="Pasar a frequencia 250 Hz"
+        button15.text="Pasar a frequencia 8000 Hz"
+        button13.setOnClickListener {
+            if (bandera!=audiocontador){
+                if(audiocontador==1){
+                    mp = MediaPlayer.create(context, R.raw.senoidal_125hz)
+                    bandera=audiocontador
+                }else if(audiocontador==2){
+                    mp = MediaPlayer.create(context, R.raw.senoidal_250hz)
+                    bandera=audiocontador
+                }else if(audiocontador==3){
+                    mp = MediaPlayer.create(context, R.raw.senoidal_500hz)
+                    bandera=audiocontador
+                }else if(audiocontador==4){
+                    mp = MediaPlayer.create(context, R.raw.senoidal_1000hz)
+                    bandera=audiocontador
+                }else if(audiocontador==5){
+                    mp = MediaPlayer.create(context, R.raw.senoidal_2000hz)
+                    bandera=audiocontador
+                }else if(audiocontador==6){
+                    mp = MediaPlayer.create(context, R.raw.senoidal_4000hz)
+                    bandera=audiocontador
+                }else if(audiocontador==7){
+                    mp = MediaPlayer.create(context, R.raw.senoidal_8000hz)
+                    bandera=audiocontador
+                }
+            }
+            if (reprstop==1){
+                mp.start()
+                button13.text="Detener"
+                reprstop=0
+            }else{
+                mp.pause()
+                button13.text="Reproducir"
+                reprstop=1
+            }
+        }
+        button14.setOnClickListener {
+            mp.stop()
+            audiocontador=++audiocontador
+            button13.text="Reproducir"
+            if (audiocontador>=8){
+                audiocontador=1
+            }
+            if(audiocontador==1){
+                button14.text="Pasar a frequencia 250 Hz"
+                button15.text="Pasar a frequencia 8000 Hz"
+            }else if(audiocontador==2){
+                button14.text="Pasar a frequencia 500 Hz"
+                button15.text="Pasar a frequencia 125 Hz"
+            }else if(audiocontador==3){
+                button14.text="Pasar a frequencia 1000 Hz"
+                button15.text="Pasar a frequencia 250 Hz"
+            }else if(audiocontador==4){
+                button14.text="Pasar a frequencia 2000 Hz"
+                button15.text="Pasar a frequencia 500 Hz"
+            }else if(audiocontador==5){
+                button14.text="Pasar a frequencia 4000 Hz"
+                button15.text="Pasar a frequencia 1000 Hz"
+            }else if(audiocontador==6){
+                button14.text="Pasar a frequencia 8000 Hz"
+                button15.text="Pasar a frequencia 2000 Hz"
+            }else if(audiocontador==7){
+                button14.text="Pasar a frequencia 4000 Hz"
+                button15.text="Pasar a frequencia 125 Hz"
+            }
+        }
+        button15.setOnClickListener {
+            mp.stop()
+            audiocontador=--audiocontador
+            button13.text="Reproducir"
+            if (audiocontador<=0){
+                audiocontador=7
+            }
+            if(audiocontador==1){
+                button14.text="Pasar a frequencia 250 Hz"
+                button15.text="Pasar a frequencia 8000 Hz"
+            }else if(audiocontador==2){
+                button14.text="Pasar a frequencia 500 Hz"
+                button15.text="Pasar a frequencia 125 Hz"
+            }else if(audiocontador==3){
+                button14.text="Pasar a frequencia 1000 Hz"
+                button15.text="Pasar a frequencia 250 Hz"
+            }else if(audiocontador==4){
+                button14.text="Pasar a frequencia 2000 Hz"
+                button15.text="Pasar a frequencia 500 Hz"
+            }else if(audiocontador==5){
+                button14.text="Pasar a frequencia 4000 Hz"
+                button15.text="Pasar a frequencia 1000 Hz"
+            }else if(audiocontador==6){
+                button14.text="Pasar a frequencia 8000 Hz"
+                button15.text="Pasar a frequencia 2000 Hz"
+            }else if(audiocontador==7){
+                button14.text="Pasar a frequencia 4000 Hz"
+                button15.text="Pasar a frequencia 125 Hz"
+            }
+        }
+        button16.setOnClickListener{
+
+            val am = activity?.getSystemService(AUDIO_SERVICE) as AudioManager?
+            val music_volume_level = am?.getStreamVolume(AudioManager.STREAM_MUSIC)
+            val max = am?.getStreamMaxVolume(AudioManager.STREAM_MUSIC)
+            Log.i("holis","$music_volume_level")
+            Log.i("holis","$max")
+        }
+
+
+    }
+    fun onClick() {
+
     }
 
     companion object {
