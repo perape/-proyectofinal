@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/menu">
+
+    <fragment
+        android:id="@+id/menu"
+        android:name="edu.itesm.proyecto_final_prototipo.Menu"
+        android:label="fragment_menu"
+        tools:layout="@layout/fragment_menu" >
+        <action
+            android:id="@+id/action_menu_to_audiometria"
+            app:destination="@id/audiometria" />
+        <action
+            android:id="@+id/action_menu_to_dispositivo"
+            app:destination="@id/dispositivo" />
+    </fragment>
+    <fragment
+        android:id="@+id/audiometria"
+        android:name="edu.itesm.proyecto_final_prototipo.Audiometria"
+        android:label="fragment_audiometria"
+        tools:layout="@layout/fragment_audiometria" >
+        <action
+            android:id="@+id/action_audiometria_to_prueba_audiometria"
+            app:destination="@id/prueba_audiometria" />
+        <action
+            android:id="@+id/action_audiometria_to_historial_audiometria"
+            app:destination="@id/historial_audiometria" />
+    </fragment>
+    <fragment
+        android:id="@+id/dispositivo"
+        android:name="edu.itesm.proyecto_final_prototipo.Dispositivo"
+        android:label="fragment_dispositivo"
+        tools:layout="@layout/fragment_dispositivo" >
+        <action
+            android:id="@+id/action_dispositivo_to_configuracion_manual"
+            app:destination="@id/configuracion_manual" />
+        <action
+            android:id="@+id/action_dispositivo_to_configuracion_automatica"
+            app:destination="@id/configuracion_automatica" />
+    </fragment>
+    <fragment
+        android:id="@+id/configuracion_automatica"
+        android:name="edu.itesm.proyecto_final_prototipo.Configuracion_automatica"
+        android:label="fragment_configuracion_automatica"
+        tools:layout="@layout/fragment_configuracion_automatica" />
+    <fragment
+        android:id="@+id/configuracion_manual"
+        android:name="edu.itesm.proyecto_final_prototipo.Configuracion_manual"
+        android:label="fragment_configuracion_manual"
+        tools:layout="@layout/fragment_configuracion_manual" />
+    <fragment
+        android:id="@+id/historial_audiometria"
+        android:name="edu.itesm.proyecto_final_prototipo.Historial_audiometria"
+        android:label="fragment_historial_audiometria"
+        tools:layout="@layout/fragment_historial_audiometria" />
+    <fragment
+        android:id="@+id/prueba_audiometria"
+        android:name="edu.itesm.proyecto_final_prototipo.Prueba_audiometria"
+        android:label="fragment_prueba_audiometria"
+        tools:layout="@layout/fragment_prueba_audiometria" />
+</navigation>
