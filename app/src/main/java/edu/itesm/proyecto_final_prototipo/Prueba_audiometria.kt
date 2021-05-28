@@ -30,7 +30,10 @@ class Prueba_audiometria : Fragment() {
     var bandera=0
     var audiocontador=1
     var reprstop=1
+    var frequencia=125
     lateinit var mp:MediaPlayer
+    lateinit var resultadoAudiometria: ResultadoAudiometria
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,42 +57,58 @@ class Prueba_audiometria : Fragment() {
         bandera=audiocontador
         button14.text="Pasar a frequencia 250 Hz"
         button15.text="Pasar a frequencia 8000 Hz"
+        textView.text="Presiona el Boton de Reproducir para comenzar a escuhar el tonos puros de $frequencia Hz de frequencia"
         button13.setOnClickListener {
             if (bandera!=audiocontador){
                 if(audiocontador==1){
                     mp = MediaPlayer.create(context, R.raw.senoidal_125hz)
                     bandera=audiocontador
+                    frequencia=125
                 }else if(audiocontador==2){
                     mp = MediaPlayer.create(context, R.raw.senoidal_250hz)
                     bandera=audiocontador
+                    frequencia=250
                 }else if(audiocontador==3){
                     mp = MediaPlayer.create(context, R.raw.senoidal_500hz)
                     bandera=audiocontador
+                    frequencia=500
                 }else if(audiocontador==4){
                     mp = MediaPlayer.create(context, R.raw.senoidal_1000hz)
                     bandera=audiocontador
+                    frequencia=1000
                 }else if(audiocontador==5){
                     mp = MediaPlayer.create(context, R.raw.senoidal_2000hz)
                     bandera=audiocontador
+                    frequencia=2000
                 }else if(audiocontador==6){
                     mp = MediaPlayer.create(context, R.raw.senoidal_4000hz)
                     bandera=audiocontador
+                    frequencia=4000
                 }else if(audiocontador==7){
                     mp = MediaPlayer.create(context, R.raw.senoidal_8000hz)
                     bandera=audiocontador
+                    frequencia=80000
                 }
             }
             if (reprstop==1){
                 mp.start()
                 button13.text="Detener"
+                textView.text="Aumenta o disminuye el volumen de tu dispositivo hasta que apenas alcances a escuchar el tono puro, despues presiona el boton de Deneter y pasa o regresar a la siguiente frequencia"
                 reprstop=0
             }else{
                 mp.pause()
                 button13.text="Reproducir"
+                textView.text="Presiona el Boton de Reproducir para comenzar a escuhar el tonos puros de $frequencia Hz de frequencia"
                 reprstop=1
             }
         }
         button14.setOnClickListener {
+            if (reprstop!=1){
+                mp.pause()
+                button13.text="Reproducir"
+                textView.text="Presiona el Boton de Reproducir para comenzar a escuhar el tonos puros de $frequencia Hz de frequencia"
+                reprstop=1
+            }
             mp.stop()
             audiocontador=++audiocontador
             button13.text="Reproducir"
@@ -98,26 +117,35 @@ class Prueba_audiometria : Fragment() {
             }
             if(audiocontador==1){
                 button14.text="Pasar a frequencia 250 Hz"
-                button15.text="Pasar a frequencia 8000 Hz"
+                button15.text="Regresar a frequencia 8000 Hz"
+                frequencia=125
+
             }else if(audiocontador==2){
                 button14.text="Pasar a frequencia 500 Hz"
-                button15.text="Pasar a frequencia 125 Hz"
+                button15.text="Regresar a frequencia 125 Hz"
+                frequencia=250
             }else if(audiocontador==3){
                 button14.text="Pasar a frequencia 1000 Hz"
-                button15.text="Pasar a frequencia 250 Hz"
+                button15.text="Regresar a frequencia 250 Hz"
+                frequencia=500
             }else if(audiocontador==4){
                 button14.text="Pasar a frequencia 2000 Hz"
-                button15.text="Pasar a frequencia 500 Hz"
+                button15.text="Regresar a frequencia 500 Hz"
+                frequencia=1000
             }else if(audiocontador==5){
                 button14.text="Pasar a frequencia 4000 Hz"
-                button15.text="Pasar a frequencia 1000 Hz"
+                button15.text="Regresar a frequencia 1000 Hz"
+                frequencia=2000
             }else if(audiocontador==6){
                 button14.text="Pasar a frequencia 8000 Hz"
-                button15.text="Pasar a frequencia 2000 Hz"
+                button15.text="Regresar a frequencia 2000 Hz"
+                frequencia=4000
             }else if(audiocontador==7){
                 button14.text="Pasar a frequencia 4000 Hz"
-                button15.text="Pasar a frequencia 125 Hz"
+                button15.text="Regresar a frequencia 125 Hz"
+                frequencia=8000
             }
+            textView.text="Presiona el Boton de Reproducir para comenzar a escuhar el tonos puros de $frequencia Hz de frequencia"
         }
         button15.setOnClickListener {
             mp.stop()
@@ -128,26 +156,34 @@ class Prueba_audiometria : Fragment() {
             }
             if(audiocontador==1){
                 button14.text="Pasar a frequencia 250 Hz"
-                button15.text="Pasar a frequencia 8000 Hz"
+                button15.text="Regresar a frequencia 8000 Hz"
+                frequencia=125
             }else if(audiocontador==2){
                 button14.text="Pasar a frequencia 500 Hz"
-                button15.text="Pasar a frequencia 125 Hz"
+                button15.text="Regresar a frequencia 125 Hz"
+                frequencia=250
             }else if(audiocontador==3){
                 button14.text="Pasar a frequencia 1000 Hz"
-                button15.text="Pasar a frequencia 250 Hz"
+                button15.text="Regresar a frequencia 250 Hz"
+                frequencia=500
             }else if(audiocontador==4){
                 button14.text="Pasar a frequencia 2000 Hz"
-                button15.text="Pasar a frequencia 500 Hz"
+                button15.text="Regresar a frequencia 500 Hz"
+                frequencia=1000
             }else if(audiocontador==5){
                 button14.text="Pasar a frequencia 4000 Hz"
-                button15.text="Pasar a frequencia 1000 Hz"
+                button15.text="Regresar a frequencia 1000 Hz"
+                frequencia=2000
             }else if(audiocontador==6){
                 button14.text="Pasar a frequencia 8000 Hz"
-                button15.text="Pasar a frequencia 2000 Hz"
+                button15.text="Regresar a frequencia 2000 Hz"
+                frequencia=4000
             }else if(audiocontador==7){
                 button14.text="Pasar a frequencia 4000 Hz"
-                button15.text="Pasar a frequencia 125 Hz"
+                button15.text="Regresar a frequencia 125 Hz"
+                frequencia=8000
             }
+            textView.text="Presiona el Boton de Reproducir para comenzar a escuhar el tonos puros de $frequencia Hz de frequencia"
         }
         button16.setOnClickListener{
 

@@ -41,10 +41,10 @@ class Configuracion_manual : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        bluetoothJhr = BluetoothJhr(requireContext(),Main2Activity::class.java)
-        bluetoothJhr.exitErrorOk(true)
-        bluetoothJhr.mensajeConexion("Conectado")
-        bluetoothJhr.mensajeErrorTx("problamas en la conexion")
+        //bluetoothJhr = BluetoothJhr(requireContext(),Main2Activity::class.java)
+        //bluetoothJhr.exitErrorOk(true)
+        //bluetoothJhr.mensajeConexion("Conectado")
+        //bluetoothJhr.mensajeErrorTx("problamas en la conexion")
 
 
     }
@@ -89,12 +89,12 @@ class Configuracion_manual : Fragment() {
             //textView17.text = Volumen.toString()
 
 
-            bluetoothJhr.mTx(Rx)
-            bluetoothJhr.mTx(" ")
-            bluetoothJhr.mTx(" ")
-            bluetoothJhr.mTx(" ")
-            bluetoothJhr.mTx(" ")
-            bluetoothJhr.mTx(Rx2)
+            //bluetoothJhr.mTx(Rx)
+            //bluetoothJhr.mTx(" ")
+            //bluetoothJhr.mTx(" ")
+            //bluetoothJhr.mTx(" ")
+            //bluetoothJhr.mTx(" ")
+            //bluetoothJhr.mTx(Rx2)
             Log.i("holis","$Rx2 y $Rx")
 
             //var Rx2: String = editTextNumber2.text.toString()
@@ -130,7 +130,7 @@ class Configuracion_manual : Fragment() {
         Frecuencia.min=1
         Frecuencia.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener{
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
-                freqEntero= (Math.ceil((3899%progress)*40.01)+101).toInt()
+                freqEntero= ((4000*progress)/100+100)
                 textView3.text = freqEntero.toString()+" Hz"
                 if(freqEntero>=101 && freqEntero<=187){
                     Rx2="q"
@@ -176,13 +176,13 @@ class Configuracion_manual : Fragment() {
     }
 
     override fun onResume() {
-        initConexion=bluetoothJhr.conectaBluetooth()
+        //initConexion=bluetoothJhr.conectaBluetooth()
         super.onResume()
     }
 
     override fun onPause() {
-        offHilo=true
-        bluetoothJhr.exitConexion()
+        //offHilo=true
+        //bluetoothJhr.exitConexion()
         super.onPause()
     }
 
