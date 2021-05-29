@@ -11,7 +11,7 @@ class menu_1 : AppCompatActivity() {
         setContentView(R.layout.activity_menu_1)
 
         Handler().postDelayed({
-        startActivity(Intent(this,MainActivity::class.java))
+        startActivity(Intent(this,LoginActivity::class.java))
 
         // close this activity
         finish()
