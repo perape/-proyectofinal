@@ -141,8 +141,8 @@ class Prueba_audiometria : Fragment() {
                 button15.text="Regresar a frequencia 2000 Hz"
                 frequencia=4000
             }else if(audiocontador==7){
-                button14.text="Pasar a frequencia 4000 Hz"
-                button15.text="Regresar a frequencia 125 Hz"
+                button14.text="Pasar a frequencia 125 Hz"
+                button15.text="Regresar a frequencia 4000 Hz"
                 frequencia=8000
             }
             textView.text="Presiona el Boton de Reproducir para comenzar a escuhar el tonos puros de $frequencia Hz de frequencia"
@@ -179,8 +179,8 @@ class Prueba_audiometria : Fragment() {
                 button15.text="Regresar a frequencia 2000 Hz"
                 frequencia=4000
             }else if(audiocontador==7){
-                button14.text="Pasar a frequencia 4000 Hz"
-                button15.text="Regresar a frequencia 125 Hz"
+                button14.text="Pasar a frequencia 125 Hz"
+                button15.text="Regresar a frequencia 4000 Hz"
                 frequencia=8000
             }
             textView.text="Presiona el Boton de Reproducir para comenzar a escuhar el tonos puros de $frequencia Hz de frequencia"
