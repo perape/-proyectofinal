@@ -2,3 +2,4 @@ include ':bluetoothjhr'
 include ':app'
 rootProject.name = "proyecto_final_prototipo"
 include ':myapplication'
+include ':lib'

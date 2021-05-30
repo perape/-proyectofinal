@@ -41,10 +41,10 @@ class Configuracion_manual : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        //bluetoothJhr = BluetoothJhr(requireContext(),Main2Activity::class.java)
-        //bluetoothJhr.exitErrorOk(true)
-        //bluetoothJhr.mensajeConexion("Conectado")
-        //bluetoothJhr.mensajeErrorTx("problamas en la conexion")
+        bluetoothJhr = BluetoothJhr(requireContext(),Main2Activity::class.java)
+        bluetoothJhr.exitErrorOk(true)
+        bluetoothJhr.mensajeConexion("Conectado")
+        bluetoothJhr.mensajeErrorTx("problamas en la conexion")
 
 
     }
@@ -89,13 +89,13 @@ class Configuracion_manual : Fragment() {
             //textView17.text = Volumen.toString()
 
 
-            //bluetoothJhr.mTx(Rx)
-            //bluetoothJhr.mTx(" ")
-            //bluetoothJhr.mTx(" ")
-            //bluetoothJhr.mTx(" ")
-            //bluetoothJhr.mTx(" ")
-            //bluetoothJhr.mTx(Rx2)
-            Log.i("holis","$Rx2 y $Rx")
+            bluetoothJhr.mTx(Rx)
+            bluetoothJhr.mTx(" ")
+            bluetoothJhr.mTx(" ")
+            bluetoothJhr.mTx(" ")
+            bluetoothJhr.mTx(" ")
+            bluetoothJhr.mTx(Rx2)
+            //Log.i("holis","$Rx2 y $Rx")
 
             //var Rx2: String = editTextNumber2.text.toString()
         }
@@ -150,7 +150,7 @@ class Configuracion_manual : Fragment() {
                 if(freqEntero>=3000 && freqEntero<=4061){
                     Rx2="y"
                 }
-                //Rx2=freqEntero.toString()
+                Rx2=freqEntero.toString()
                 //Toast.makeText(context, "$progress", Toast.LENGTH_LONG).show()
                 //Log.i("holis","$freqEntero")
             }
@@ -181,8 +181,8 @@ class Configuracion_manual : Fragment() {
     }
 
     override fun onPause() {
-        //offHilo=true
-        //bluetoothJhr.exitConexion()
+        offHilo=true
+        bluetoothJhr.exitConexion()
         super.onPause()
     }
 

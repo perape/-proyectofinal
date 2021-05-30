@@ -33,7 +33,13 @@ class Prueba_audiometria : Fragment() {
     var frequencia=125
     lateinit var mp:MediaPlayer
     lateinit var resultadoAudiometria: ResultadoAudiometria
-
+    var level_music_125Hz:Int?=0
+    var level_music_250Hz:Int?=0
+    var level_music_500Hz:Int?=0
+    var level_music_1000Hz:Int?=0
+    var level_music_2000Hz:Int?=0
+    var level_music_4000Hz:Int?=0
+    var level_music_8000Hz:Int?=0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -64,6 +70,7 @@ class Prueba_audiometria : Fragment() {
                     mp = MediaPlayer.create(context, R.raw.senoidal_125hz)
                     bandera=audiocontador
                     frequencia=125
+
                 }else if(audiocontador==2){
                     mp = MediaPlayer.create(context, R.raw.senoidal_250hz)
                     bandera=audiocontador
@@ -100,6 +107,35 @@ class Prueba_audiometria : Fragment() {
                 button13.text="Reproducir"
                 textView.text="Presiona el Boton de Reproducir para comenzar a escuhar el tonos puros de $frequencia Hz de frequencia"
                 reprstop=1
+                if(audiocontador==1){
+                    val am = activity?.getSystemService(AUDIO_SERVICE) as AudioManager?
+                    val music_volume_level = am?.getStreamVolume(AudioManager.STREAM_MUSIC)
+                    level_music_125Hz=music_volume_level
+                }else if(audiocontador==2){
+                    val am = activity?.getSystemService(AUDIO_SERVICE) as AudioManager?
+                    val music_volume_level = am?.getStreamVolume(AudioManager.STREAM_MUSIC)
+                    level_music_250Hz=music_volume_level
+                }else if(audiocontador==3){
+                    val am = activity?.getSystemService(AUDIO_SERVICE) as AudioManager?
+                    val music_volume_level = am?.getStreamVolume(AudioManager.STREAM_MUSIC)
+                    level_music_500Hz=music_volume_level
+                }else if(audiocontador==4){
+                    val am = activity?.getSystemService(AUDIO_SERVICE) as AudioManager?
+                    val music_volume_level = am?.getStreamVolume(AudioManager.STREAM_MUSIC)
+                    level_music_1000Hz=music_volume_level
+                }else if(audiocontador==5){
+                    val am = activity?.getSystemService(AUDIO_SERVICE) as AudioManager?
+                    val music_volume_level = am?.getStreamVolume(AudioManager.STREAM_MUSIC)
+                    level_music_2000Hz=music_volume_level
+                }else if(audiocontador==6){
+                    val am = activity?.getSystemService(AUDIO_SERVICE) as AudioManager?
+                    val music_volume_level = am?.getStreamVolume(AudioManager.STREAM_MUSIC)
+                    level_music_4000Hz=music_volume_level
+                }else if(audiocontador==7){
+                    val am = activity?.getSystemService(AUDIO_SERVICE) as AudioManager?
+                    val music_volume_level = am?.getStreamVolume(AudioManager.STREAM_MUSIC)
+                    level_music_8000Hz=music_volume_level
+                }
             }
         }
         button14.setOnClickListener {
@@ -119,31 +155,51 @@ class Prueba_audiometria : Fragment() {
                 button14.text="Pasar a frequencia 250 Hz"
                 button15.text="Regresar a frequencia 8000 Hz"
                 frequencia=125
-
+                val am = activity?.getSystemService(AUDIO_SERVICE) as AudioManager?
+                val music_volume_level = am?.getStreamVolume(AudioManager.STREAM_MUSIC)
+                level_music_125Hz=music_volume_level
             }else if(audiocontador==2){
                 button14.text="Pasar a frequencia 500 Hz"
                 button15.text="Regresar a frequencia 125 Hz"
                 frequencia=250
+                val am = activity?.getSystemService(AUDIO_SERVICE) as AudioManager?
+                val music_volume_level = am?.getStreamVolume(AudioManager.STREAM_MUSIC)
+                level_music_250Hz=music_volume_level
             }else if(audiocontador==3){
                 button14.text="Pasar a frequencia 1000 Hz"
                 button15.text="Regresar a frequencia 250 Hz"
                 frequencia=500
+                val am = activity?.getSystemService(AUDIO_SERVICE) as AudioManager?
+                val music_volume_level = am?.getStreamVolume(AudioManager.STREAM_MUSIC)
+                level_music_500Hz=music_volume_level
             }else if(audiocontador==4){
                 button14.text="Pasar a frequencia 2000 Hz"
                 button15.text="Regresar a frequencia 500 Hz"
                 frequencia=1000
+                val am = activity?.getSystemService(AUDIO_SERVICE) as AudioManager?
+                val music_volume_level = am?.getStreamVolume(AudioManager.STREAM_MUSIC)
+                level_music_1000Hz=music_volume_level
             }else if(audiocontador==5){
                 button14.text="Pasar a frequencia 4000 Hz"
                 button15.text="Regresar a frequencia 1000 Hz"
                 frequencia=2000
+                val am = activity?.getSystemService(AUDIO_SERVICE) as AudioManager?
+                val music_volume_level = am?.getStreamVolume(AudioManager.STREAM_MUSIC)
+                level_music_2000Hz=music_volume_level
             }else if(audiocontador==6){
                 button14.text="Pasar a frequencia 8000 Hz"
                 button15.text="Regresar a frequencia 2000 Hz"
                 frequencia=4000
+                val am = activity?.getSystemService(AUDIO_SERVICE) as AudioManager?
+                val music_volume_level = am?.getStreamVolume(AudioManager.STREAM_MUSIC)
+                level_music_4000Hz=music_volume_level
             }else if(audiocontador==7){
                 button14.text="Pasar a frequencia 125 Hz"
                 button15.text="Regresar a frequencia 4000 Hz"
                 frequencia=8000
+                val am = activity?.getSystemService(AUDIO_SERVICE) as AudioManager?
+                val music_volume_level = am?.getStreamVolume(AudioManager.STREAM_MUSIC)
+                level_music_8000Hz=music_volume_level
             }
             textView.text="Presiona el Boton de Reproducir para comenzar a escuhar el tonos puros de $frequencia Hz de frequencia"
         }
@@ -158,45 +214,64 @@ class Prueba_audiometria : Fragment() {
                 button14.text="Pasar a frequencia 250 Hz"
                 button15.text="Regresar a frequencia 8000 Hz"
                 frequencia=125
+                val am = activity?.getSystemService(AUDIO_SERVICE) as AudioManager?
+                val music_volume_level = am?.getStreamVolume(AudioManager.STREAM_MUSIC)
+                level_music_125Hz=music_volume_level
             }else if(audiocontador==2){
                 button14.text="Pasar a frequencia 500 Hz"
                 button15.text="Regresar a frequencia 125 Hz"
                 frequencia=250
+                val am = activity?.getSystemService(AUDIO_SERVICE) as AudioManager?
+                val music_volume_level = am?.getStreamVolume(AudioManager.STREAM_MUSIC)
+                level_music_250Hz=music_volume_level
             }else if(audiocontador==3){
                 button14.text="Pasar a frequencia 1000 Hz"
                 button15.text="Regresar a frequencia 250 Hz"
                 frequencia=500
+                val am = activity?.getSystemService(AUDIO_SERVICE) as AudioManager?
+                val music_volume_level = am?.getStreamVolume(AudioManager.STREAM_MUSIC)
+                level_music_500Hz=music_volume_level
             }else if(audiocontador==4){
                 button14.text="Pasar a frequencia 2000 Hz"
                 button15.text="Regresar a frequencia 500 Hz"
                 frequencia=1000
+                val am = activity?.getSystemService(AUDIO_SERVICE) as AudioManager?
+                val music_volume_level = am?.getStreamVolume(AudioManager.STREAM_MUSIC)
+                level_music_1000Hz=music_volume_level
             }else if(audiocontador==5){
                 button14.text="Pasar a frequencia 4000 Hz"
                 button15.text="Regresar a frequencia 1000 Hz"
                 frequencia=2000
+                val am = activity?.getSystemService(AUDIO_SERVICE) as AudioManager?
+                val music_volume_level = am?.getStreamVolume(AudioManager.STREAM_MUSIC)
+                level_music_2000Hz=music_volume_level
             }else if(audiocontador==6){
                 button14.text="Pasar a frequencia 8000 Hz"
                 button15.text="Regresar a frequencia 2000 Hz"
                 frequencia=4000
+                val am = activity?.getSystemService(AUDIO_SERVICE) as AudioManager?
+                val music_volume_level = am?.getStreamVolume(AudioManager.STREAM_MUSIC)
+                level_music_4000Hz=music_volume_level
             }else if(audiocontador==7){
                 button14.text="Pasar a frequencia 125 Hz"
                 button15.text="Regresar a frequencia 4000 Hz"
                 frequencia=8000
+                val am = activity?.getSystemService(AUDIO_SERVICE) as AudioManager?
+                val music_volume_level = am?.getStreamVolume(AudioManager.STREAM_MUSIC)
+                level_music_8000Hz=music_volume_level
             }
             textView.text="Presiona el Boton de Reproducir para comenzar a escuhar el tonos puros de $frequencia Hz de frequencia"
         }
         button16.setOnClickListener{
-
-            val am = activity?.getSystemService(AUDIO_SERVICE) as AudioManager?
-            val music_volume_level = am?.getStreamVolume(AudioManager.STREAM_MUSIC)
-            val max = am?.getStreamMaxVolume(AudioManager.STREAM_MUSIC)
-            Log.i("holis","$music_volume_level")
-            Log.i("holis","$max")
+            Log.i("holis","$level_music_125Hz")
+            Log.i("holis","$level_music_250Hz")
+            Log.i("holis","$level_music_500Hz")
+            Log.i("holis","$level_music_1000Hz")
+            Log.i("holis","$level_music_2000Hz")
+            Log.i("holis","$level_music_4000Hz")
+            Log.i("holis","$level_music_8000Hz")
         }
 
-
-    }
-    fun onClick() {
 
     }
 
