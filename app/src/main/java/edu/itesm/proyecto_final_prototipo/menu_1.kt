@@ -15,7 +15,7 @@ class menu_1 : AppCompatActivity() {
 
         // close this activity
         finish()
-    }, 3000)
+    }, 1500)
 
     }
 }

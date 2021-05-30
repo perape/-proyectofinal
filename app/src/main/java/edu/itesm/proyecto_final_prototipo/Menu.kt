@@ -1,13 +1,18 @@
 package edu.itesm.proyecto_final_prototipo
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.fragment_audiometria.*
 import kotlinx.android.synthetic.main.fragment_menu.*
+
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -48,8 +53,20 @@ class Menu : Fragment() {
         button4.setOnClickListener {
          view?.findNavController()?.navigate(R.id.action_menu_to_dispositivo)
         }
+        logout.setOnClickListener {
+            logout()
+        }
 
     }
+
+    private fun logout() {
+        Firebase.auth.signOut()
+        val i = Intent(activity, LoginActivity::class.java)
+        startActivity(i)
+        (activity as Activity?)!!.overridePendingTransition(0, 0)
+    }
+
+
 
     companion object {
         /**
