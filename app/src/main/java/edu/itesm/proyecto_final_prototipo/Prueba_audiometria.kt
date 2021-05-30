@@ -10,6 +10,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.Fragment
+import com.github.mikephil.charting.data.BarEntry
+import com.github.mikephil.charting.data.Entry
+import com.github.mikephil.charting.data.LineData
+import com.github.mikephil.charting.data.LineDataSet
+import kotlinx.android.synthetic.main.fragment_configuracion_automatica.view.*
 import kotlinx.android.synthetic.main.fragment_prueba_audiometria.*
 
 
@@ -40,6 +45,8 @@ class Prueba_audiometria : Fragment() {
     var level_music_2000Hz:Int?=0
     var level_music_4000Hz:Int?=0
     var level_music_8000Hz:Int?=0
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -100,7 +107,7 @@ class Prueba_audiometria : Fragment() {
             if (reprstop==1){
                 mp.start()
                 button13.text="Detener"
-                textView.text="Aumenta o disminuye el volumen de tu dispositivo hasta que apenas alcances a escuchar el tono puro, despues presiona el boton de Deneter y pasa o regresar a la siguiente frequencia"
+                textView.text="Aumenta o disminuye el volumen de tu dispositivo hasta que apenas alcances a escuchar el tono puro, despues presiona el boton de Deneter y pasar o regresar alguna de las de las frequencia"
                 reprstop=0
             }else{
                 mp.pause()
@@ -263,6 +270,7 @@ class Prueba_audiometria : Fragment() {
             textView.text="Presiona el Boton de Reproducir para comenzar a escuhar el tonos puros de $frequencia Hz de frequencia"
         }
         button16.setOnClickListener{
+
             Log.i("holis","$level_music_125Hz")
             Log.i("holis","$level_music_250Hz")
             Log.i("holis","$level_music_500Hz")
@@ -270,6 +278,29 @@ class Prueba_audiometria : Fragment() {
             Log.i("holis","$level_music_2000Hz")
             Log.i("holis","$level_music_4000Hz")
             Log.i("holis","$level_music_8000Hz")
+            val xvalue=ArrayList<String>()
+            xvalue.add("125 Hz")
+            xvalue.add("250 Hz")
+            xvalue.add("500 Hz")
+            xvalue.add("1000 Hz")
+            xvalue.add("2000 Hz")
+            xvalue.add("4000 Hz")
+            xvalue.add("8000 Hz")
+
+            var lineentry = ArrayList<Entry>();
+            lineentry.add(Entry(level_music_125Hz!!.toFloat(), 0))
+            lineentry.add(Entry(level_music_250Hz!!.toFloat(), 1))
+            lineentry.add(Entry(level_music_500Hz!!.toFloat(), 2))
+            lineentry.add(Entry(level_music_1000Hz!!.toFloat(), 3))
+            lineentry.add(Entry(level_music_2000Hz!!.toFloat(), 4))
+            lineentry.add(Entry(level_music_4000Hz!!.toFloat(), 5))
+            lineentry.add(Entry(level_music_8000Hz!!.toFloat(), 6))
+            val lineadataset = LineDataSet(lineentry, "Volumen de equipo")
+            lineadataset.color=resources.getColor(R.color.blue)
+            val data = LineData(xvalue,lineadataset)
+            LineChart.data=data
+            LineChart.setBackgroundColor(resources.getColor(R.color.silver))
+            textView13.text="El resultado de tu audiometria se muestra a continuacion, mientras menor volumen del equipo necesitates para percibir el tono puro, mejor capacitad auditivas tienes"
         }
 
 
