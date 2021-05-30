@@ -41,12 +41,12 @@ class Dispositivo : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        button5.setOnClickListener {
+/*        button5.setOnClickListener {
             view?.findNavController()?.navigate(R.id.action_dispositivo_to_configuracion_automatica)
         }
         button6.setOnClickListener {
             view?.findNavController()?.navigate(R.id.action_dispositivo_to_configuracion_manual)
-        }
+        }*/
     }
 
     companion object {

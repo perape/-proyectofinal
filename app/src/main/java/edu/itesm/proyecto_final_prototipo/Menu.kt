@@ -10,7 +10,6 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
-import kotlinx.android.synthetic.main.fragment_audiometria.*
 import kotlinx.android.synthetic.main.fragment_menu.*
 
 
@@ -47,11 +46,17 @@ class Menu : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        button3.setOnClickListener {
-            view?.findNavController()?.navigate(R.id.action_menu_to_audiometria)
+        pruebaa.setOnClickListener {
+            view?.findNavController()?.navigate(R.id.action_menu_to_prueba_audiometria)
         }
-        button4.setOnClickListener {
-         view?.findNavController()?.navigate(R.id.action_menu_to_dispositivo)
+        resulradoa.setOnClickListener {
+         view?.findNavController()?.navigate(R.id.action_menu_to_historial_audiometria)
+        }
+        confm.setOnClickListener {
+            view?.findNavController()?.navigate(R.id.action_menu_to_configuracion_manual)
+        }
+        conexiona.setOnClickListener {
+            view?.findNavController()?.navigate(R.id.action_menu_to_configuracion_automatica)
         }
         logout.setOnClickListener {
             logout()
@@ -67,24 +72,4 @@ class Menu : Fragment() {
     }
 
 
-
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment Menu.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            Menu().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
-    }
 }
