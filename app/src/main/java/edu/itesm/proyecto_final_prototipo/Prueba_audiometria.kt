@@ -5,33 +5,33 @@ import android.media.AudioManager
 import android.media.MediaPlayer
 import android.os.Bundle
 import android.util.Log
+import java.util.Calendar
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat.getSystemService
+import android.widget.Toast
 import androidx.fragment.app.Fragment
-import com.github.mikephil.charting.data.BarEntry
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
+import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.fragment_configuracion_automatica.view.*
 import kotlinx.android.synthetic.main.fragment_prueba_audiometria.*
 
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [Prueba_audiometria.newInstance] factory method to
- * create an instance of this fragment.
- */
 class Prueba_audiometria : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+
+    private lateinit var database: FirebaseDatabase
+    private lateinit var reference: DatabaseReference
+
+    private lateinit var analytics: FirebaseAnalytics
+    private lateinit var bundle: Bundle
+
+
     var bandera=0
     var audiocontador=1
     var reprstop=1
@@ -50,16 +50,21 @@ class Prueba_audiometria : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
+
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
+        database = FirebaseDatabase.getInstance()
+        reference = database.getReference("resultados")
+
+        analytics = FirebaseAnalytics.getInstance(context)
+
+        bundle = Bundle()
+
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_prueba_audiometria, container, false)
     }
@@ -271,13 +276,13 @@ class Prueba_audiometria : Fragment() {
         }
         button16.setOnClickListener{
 
-            Log.i("holis","$level_music_125Hz")
-            Log.i("holis","$level_music_250Hz")
-            Log.i("holis","$level_music_500Hz")
-            Log.i("holis","$level_music_1000Hz")
-            Log.i("holis","$level_music_2000Hz")
-            Log.i("holis","$level_music_4000Hz")
-            Log.i("holis","$level_music_8000Hz")
+            Log.i("holis", "$level_music_125Hz")
+            Log.i("holis", "$level_music_250Hz")
+            Log.i("holis", "$level_music_500Hz")
+            Log.i("holis", "$level_music_1000Hz")
+            Log.i("holis", "$level_music_2000Hz")
+            Log.i("holis", "$level_music_4000Hz")
+            Log.i("holis", "$level_music_8000Hz")
             val xvalue=ArrayList<String>()
             xvalue.add("125 Hz")
             xvalue.add("250 Hz")
@@ -297,32 +302,52 @@ class Prueba_audiometria : Fragment() {
             lineentry.add(Entry(level_music_8000Hz!!.toFloat(), 6))
             val lineadataset = LineDataSet(lineentry, "Volumen de equipo")
             lineadataset.color=resources.getColor(R.color.blue)
-            val data = LineData(xvalue,lineadataset)
+            val data = LineData(xvalue, lineadataset)
             LineChart.data=data
             LineChart.setBackgroundColor(resources.getColor(R.color.silver))
             textView13.text="El resultado de tu audiometria se muestra a continuacion, mientras menor volumen del equipo necesitates para percibir el tono puro, mejor capacitad auditivas tienes"
         }
 
+        button4.setOnClickListener { addResultados() }
+
+
 
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment Prueba_audiometria.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            Prueba_audiometria().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+    public fun addResultados(){
+        val text = "Se agregaron resultados"
+        val duration = Toast.LENGTH_SHORT
+        val toast = Toast.makeText(context, text, duration)
+
+        val Fecha = Calendar.getInstance().getTime()
+
+        val v125 = level_music_125Hz
+        val v250 = level_music_250Hz
+        val v500 = level_music_500Hz
+        val v1000 = level_music_1000Hz
+        val v2000 = level_music_2000Hz
+        val v4000 = level_music_4000Hz
+        val v8000 = level_music_8000Hz
+
+        val usuario = Firebase.auth.currentUser
+        reference = database.getReference("resultados/${usuario.uid}")
+        val id = reference.push().key
+        val resultado = Resultados(
+            id.toString(),
+            Fecha.toString(),
+            v125.toString(),
+            v250.toString(),
+            v500.toString(),
+            v1000.toString(),
+            v2000.toString(),
+            v4000.toString(),
+            v8000.toString()
+        )
+
+        reference.child(id!!).setValue(resultado)
+        toast.show()
+
+        bundle.putString("edu_itesm_proyecto_final_prototipo", "added_resultado")
+        analytics.logEvent("main", bundle)
     }
 }
