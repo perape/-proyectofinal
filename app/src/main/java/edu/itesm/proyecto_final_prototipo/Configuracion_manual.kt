@@ -176,14 +176,16 @@ class Configuracion_manual : Fragment() {
     }
 
     override fun onResume() {
-        //initConexion=bluetoothJhr.conectaBluetooth()
+
         super.onResume()
+        initConexion=bluetoothJhr.conectaBluetooth()
     }
 
     override fun onPause() {
+
+        super.onPause()
         offHilo=true
         bluetoothJhr.exitConexion()
-        super.onPause()
     }
 
 
