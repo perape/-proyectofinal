@@ -17,6 +17,25 @@ import com.google.firebase.ktx.Firebase
 import edu.itesm.proyecto_final_prototipo.databinding.FragmentHistorialAudiometriaBinding
 
 
+abstract class SwipeToDelete(
+    context: Context,
+    direccion: Int, direccionArrastre: Int
+):
+    ItemTouchHelper.SimpleCallback(direccion, direccionArrastre){
+    override fun onMove(
+        recyclerView: RecyclerView,
+        viewHolder: RecyclerView.ViewHolder,
+        target: RecyclerView.ViewHolder
+    ): Boolean {
+        return true
+    }
+
+    override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+
+    }
+
+}
+
 class Historial_audiometria : Fragment() {
 
     private lateinit var bind: FragmentHistorialAudiometriaBinding
@@ -38,6 +57,17 @@ class Historial_audiometria : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         cargaDatos()
+    }
+
+    private fun borraDatos(resultados: Resultados){
+        val usuario = Firebase.auth.currentUser
+        val referencia = FirebaseDatabase.getInstance().getReference("resultados/${usuario.uid}/${resultados.id}")
+        referencia.removeValue().addOnSuccessListener {
+
+            Toast.makeText(getContext(), "Borrado de la base de datos", Toast.LENGTH_SHORT).show()
+            cargaDatos()
+        }
+
     }
 
     fun cargaDatos() {
@@ -73,7 +103,7 @@ class Historial_audiometria : Fragment() {
                         layoutManager = LinearLayoutManager(activity)
                         adapter = ResultadosFragmentAdapter(listaResultados)
 
-                        /*val item = object : SwipeToDelete(
+                        val item = object : SwipeToDelete(
                             getContext(),
                             ItemTouchHelper.UP, ItemTouchHelper.LEFT
                         ) {
@@ -82,13 +112,13 @@ class Historial_audiometria : Fragment() {
                                 direction: Int
                             ) {
                                 super.onSwiped(viewHolder, direction)
-                                val comic = listaComics[viewHolder.adapterPosition]
+                                val resultado = listaResultados[viewHolder.adapterPosition]
 
-                                borraDatos(comic)
+                                borraDatos(resultado)
                             }
-                        }*/
-                       // val itemTouchHelper = ItemTouchHelper(item)
-                        //itemTouchHelper.attachToRecyclerView(bind.list)
+                        }
+                        val itemTouchHelper = ItemTouchHelper(item)
+                        itemTouchHelper.attachToRecyclerView(bind.list)
                     }
 
                     override fun onCancelled(error: DatabaseError) {
