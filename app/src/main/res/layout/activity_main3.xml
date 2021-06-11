@@ -7,7 +7,7 @@
     tools:context=".Configuracion_manual" >
 
     <Button
-        android:id="@+id/button7"
+        android:id="@+id/buttonconectorblue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Conetar dispositivo"
@@ -19,15 +19,15 @@
         app:layout_constraintVertical_bias="0.125" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/textViewfreq"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="88dp"
-        android:text="Frecuencia poblema"
+        android:text="Frecuencia poblema1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button7"
+        app:layout_constraintTop_toBottomOf="@+id/buttonconectorblue"
         app:layout_constraintVertical_bias="0.056" />
 
     <TextView
@@ -38,10 +38,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Frecuencia" />
+        app:layout_constraintTop_toBottomOf="@+id/Frecuencia1" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/textViewvol"
         android:layout_width="64dp"
         android:layout_height="28dp"
         android:layout_marginTop="20dp"
@@ -52,35 +52,35 @@
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
     <Button
-        android:id="@+id/button8"
+        android:id="@+id/enviarinfo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Aplicar informacion"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Volumen"
+        app:layout_constraintTop_toBottomOf="@+id/Volumen1"
         app:layout_constraintVertical_bias="0.29" />
 
     <Button
-        android:id="@+id/button12"
+        android:id="@+id/desconectarblue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:text="Desconectar dispositivo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button7" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonconectorblue" />
 
     <SeekBar
-        android:id="@+id/Volumen"
+        android:id="@+id/Volumen1"
         android:layout_width="274dp"
         android:layout_height="37dp"
         android:layout_marginTop="12dp"
         android:progress="50"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewvol" />
 
     <TextView
         android:id="@+id/textView17"
@@ -90,16 +90,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Volumen" />
+        app:layout_constraintTop_toBottomOf="@+id/Volumen1" />
 
     <SeekBar
-        android:id="@+id/Frecuencia"
+        android:id="@+id/Frecuencia1"
         android:layout_width="266dp"
         android:layout_height="27dp"
         android:layout_marginTop="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewfreq" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

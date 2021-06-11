@@ -53,10 +53,8 @@ class Menu : Fragment() {
          view?.findNavController()?.navigate(R.id.action_menu_to_historial_audiometria)
         }
         confm.setOnClickListener {
-            view?.findNavController()?.navigate(R.id.action_menu_to_configuracion_manual)
-        }
-        conexiona.setOnClickListener {
-            view?.findNavController()?.navigate(R.id.action_menu_to_configuracion_automatica)
+            val intent = Intent(activity, MainActivity2::class.java)
+            startActivity(intent)
         }
         logout.setOnClickListener {
             logout()

@@ -57,12 +57,19 @@ dependencies {
     implementation 'androidx.navigation:navigation-ui-ktx:2.3.4'
     implementation fileTree(dir: 'C:\\Users\\Pedro Ramos\\Downloads\\-bluetoothjhr-master', include: ['*.aar', '*.jar'], exclude: [])
     implementation 'com.google.firebase:firebase-database:19.7.0'
+    implementation 'androidx.camera:camera-camera2:1.0.0-beta08'
+
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
     implementation project (":bluetoothjhr")
     implementation platform('com.google.firebase:firebase-bom:26.7.0')
     implementation 'com.google.firebase:firebase-auth:20.0.4'
+    implementation 'com.google.firebase:firebase-functions:20.0.0'
+    implementation 'com.google.code.gson:gson:2.8.6'
+    implementation 'com.google.firebase:firebase-functions-ktx'
+    implementation 'com.google.android.gms:play-services-mlkit-text-recognition:16.2.0'
+
     implementation 'com.google.firebase:firebase-auth-ktx'
     implementation 'com.google.firebase:firebase-analytics-ktx'
 

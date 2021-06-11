@@ -121,19 +121,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="150dp"
                         android:layout_marginBottom="50dp"
-                        android:background="@drawable/gradient2"
                         android:layout_weight="1"
-                        android:text="Configuracion \n manual"
-                        android:textColor="@color/white" />
-
-                    <Button
-                        android:id="@+id/conexiona"
-                        android:layout_width="match_parent"
-                        android:layout_height="150dp"
-                        android:layout_marginBottom="50dp"
                         android:background="@drawable/gradient2"
-                        android:layout_weight="1"
-                        android:text="Configuracion \n  automatica"
+                        android:text="Configuracion \n del Dispositivo"
                         android:textColor="@color/white" />
 
 

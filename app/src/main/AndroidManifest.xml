@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-
     package="edu.itesm.proyecto_final_prototipo">
 
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 
     <application
         android:allowBackup="true"
@@ -13,7 +13,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".RegisterActivity"></activity>
+
+        <activity android:name=".MainActivity2" />
+        <activity android:name=".RegisterActivity" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".Main2Activity" />
         <activity android:name=".menu_1">
@@ -24,6 +26,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".MainActivity" />
+        <meta-data
+            android:name="com.google.firebase.ml.vision.DEPENDENCIES"
+            android:value="ocr" />
+        <!-- To use multiple models: android:value="ocr,model2,model3" -->
     </application>
 
 </manifest>
