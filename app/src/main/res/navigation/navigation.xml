@@ -37,10 +37,23 @@
         android:id="@+id/historial_audiometria"
         android:name="edu.itesm.proyecto_final_prototipo.Historial_audiometria"
         android:label="fragment_historial_audiometria"
-        tools:layout="@layout/fragment_historial_audiometria" />
+        tools:layout="@layout/fragment_historial_audiometria" >
+        <action
+            android:id="@+id/action_historial_audiometria_to_resultadoFragment"
+            app:destination="@id/resultadoFragment" />
+    </fragment>
     <fragment
         android:id="@+id/prueba_audiometria"
         android:name="edu.itesm.proyecto_final_prototipo.Prueba_audiometria"
         android:label="fragment_prueba_audiometria"
         tools:layout="@layout/fragment_prueba_audiometria" />
+    <fragment
+        android:id="@+id/resultadoFragment"
+        android:name="edu.itesm.proyecto_final_prototipo.ResultadoFragment"
+        android:label="fragment_resultado"
+        tools:layout="@layout/fragment_resultado" >
+        <argument
+            android:name="resultado"
+            app:argType="edu.itesm.proyecto_final_prototipo.Resultados" />
+    </fragment>
 </navigation>
