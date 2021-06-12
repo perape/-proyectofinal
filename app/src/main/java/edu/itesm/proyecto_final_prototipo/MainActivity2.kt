@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.SeekBar
+import android.widget.Toast
 import ingenieria.jhr.bluetoothjhr.BluetoothJhr
 import kotlinx.android.synthetic.main.activity_main3.*
 
@@ -25,12 +26,17 @@ class MainActivity2 : AppCompatActivity() {
         setContentView(R.layout.activity_main3)
         bluetoothJhr = BluetoothJhr(this,Main2Activity::class.java)
         bluetoothJhr.exitErrorOk(true)
-        bluetoothJhr.mensajeConexion("Conectado")
+        bluetoothJhr.mensajeConexion("Conexion exitosa")
         bluetoothJhr.mensajeErrorTx("problamas en la conexion")
 
         buttonconectorblue.setOnClickListener {
             val intent = Intent(this, Main2Activity::class.java)
             startActivity(intent)
+
+        }
+        desconectarblue.setOnClickListener {
+            bluetoothJhr.dispEmparejados()
+            Toast.makeText(this, "Se ha desconectado el dispositivo", Toast.LENGTH_SHORT).show()
         }
 
         enviarinfo.setOnClickListener {
@@ -40,6 +46,7 @@ class MainActivity2 : AppCompatActivity() {
             bluetoothJhr.mTx(" ")
             bluetoothJhr.mTx(" ")
             bluetoothJhr.mTx(Rx2)
+            Toast.makeText(this, "Se ha enviado la configuración", Toast.LENGTH_SHORT).show()
         }
 
         Volumen1.max=100
